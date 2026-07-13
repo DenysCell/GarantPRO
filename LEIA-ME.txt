@@ -1,0 +1,28 @@
+GARANTCELL — SITE DE VENDAS
+
+ARQUIVOS:
+- index.html
+- styles.css
+- script.js
+- assets/garantcell-sistema.png
+
+COMO ABRIR:
+1. Extraia o arquivo ZIP.
+2. Dê dois cliques em index.html.
+
+COMO COLOCAR O LINK DO ASAAS:
+1. Abra o arquivo script.js no Bloco de Notas.
+2. Encontre esta linha:
+   const LINK_DE_PAGAMENTO = "";
+3. Cole seu link entre as aspas. Exemplo:
+   const LINK_DE_PAGAMENTO = "https://www.asaas.com/c/seu-link";
+4. Salve o arquivo.
+
+WHATSAPP CONFIGURADO:
+(55) 99112-6008
+
+VALOR CONFIGURADO:
+R$ 29,90
+
+OBSERVAÇÃO:
+Enquanto o link do Asaas não estiver configurado, o botão principal abre o WhatsApp.
