@@ -1,0 +1,20 @@
+GARANTCELL — SITE PRONTO COM MERCADO PAGO
+
+LINK CONFIGURADO:
+https://mpago.la/12shRh5
+
+PARA PUBLICAR:
+1. Extraia este ZIP.
+2. No GitHub, abra o repositório GarantCell.
+3. Apague os arquivos antigos ou envie estes por cima:
+   index.html
+   styles.css
+   script.js
+   pasta assets
+4. Clique em Commit changes.
+5. Aguarde de 1 a 3 minutos.
+6. Abra o site e pressione Ctrl + F5.
+
+Todos os botões de compra já levam ao Mercado Pago.
+WhatsApp: (55) 99112-6008
+Preço: R$ 29,90
