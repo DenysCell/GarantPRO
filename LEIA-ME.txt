@@ -1,23 +1,2 @@
-GARANTPRO — SITE FINAL COM PÁGINA DE FINALIZAÇÃO
-
-ARQUIVOS:
-- index.html
-- checkout.html
-- styles.css
-- script.js
-- assets/garantpro-sistema.png
-
-LINK DE PAGAMENTO:
-https://mpago.la/12shRh5
-
-COMO PUBLICAR NO GITHUB:
-1. Extraia o ZIP.
-2. No repositório GarantPro, clique em Add file > Upload files.
-3. Envie TODOS os arquivos e a pasta assets.
-4. Confirme a substituição dos arquivos antigos.
-5. Clique em Commit changes.
-6. Aguarde 1 a 3 minutos.
-7. Abra o site e pressione Ctrl + F5.
-
-FLUXO:
-Site > Comprar Agora > Página Finalizar Compra > Mercado Pago
+Versão preparada para Cloudflare Pages Functions.
+Leia CONFIGURAR-CLOUDFLARE-PAGES.txt antes de publicar.

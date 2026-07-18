@@ -24,6 +24,7 @@ main{width:100%;padding:55px 18px}
 .total{display:flex;align-items:end;justify-content:space-between;margin:26px 0 20px}.total span{color:#aaa}.total strong{font-size:38px;color:#ff4b4b}
 .botao{display:block;width:100%;text-align:center;padding:17px 20px;border-radius:13px;background:linear-gradient(135deg,#f22121,#a10000);color:#fff;font-size:17px;font-weight:800;text-decoration:none;box-shadow:0 14px 35px rgba(220,0,0,.25)}
 .botao:hover{filter:brightness(1.08)}
+.botao[aria-disabled="true"]{opacity:.65;pointer-events:none}.erro-pagamento{display:none;margin-top:14px;padding:12px;border-radius:10px;background:#2a0d0d;border:1px solid #7b2424;color:#ffb6b6;font-size:13px;line-height:1.45}
 .caixa-segura{margin-top:17px;padding:15px;background:#0e1610;border:1px solid #214629;border-radius:12px}
 .caixa-segura strong{display:block}.caixa-segura p{margin:6px 0 0;color:#aeb9b0;font-size:13px;line-height:1.5}
 .voltar{display:block;text-align:center;color:#aaa;margin-top:20px;text-decoration:none}
@@ -66,9 +67,8 @@ footer{text-align:center;color:#777;padding:20px;font-size:13px}
         <strong>R$ 29,90</strong>
       </div>
 
-      <a class="botao" href="https://mpago.la/2L3SPfb" target="_blank" rel="noopener">
-        Ir para o pagamento
-      </a>
+      <a class="botao" id="pagarAgora" href="#">Pagar com Pix ou cartão</a>
+      <div class="erro-pagamento" id="erroPagamento" role="alert"></div>
 
       <div class="caixa-segura">
         <strong>🔒 Pagamento seguro pelo Mercado Pago</strong>
@@ -81,5 +81,34 @@ footer{text-align:center;color:#777;padding:20px;font-size:13px}
 </main>
 
 <footer>DenysCell Software • WhatsApp (55) 99112-6008</footer>
+<script>
+const botao = document.getElementById('pagarAgora');
+const erro = document.getElementById('erroPagamento');
+
+const params = new URLSearchParams(window.location.search);
+if (params.get('status') === 'failure') {
+  erro.textContent = 'O pagamento não foi concluído. Você pode tentar novamente.';
+  erro.style.display = 'block';
+}
+
+botao.addEventListener('click', async (event) => {
+  event.preventDefault();
+  erro.style.display = 'none';
+  botao.setAttribute('aria-disabled', 'true');
+  botao.textContent = 'Abrindo pagamento seguro...';
+
+  try {
+    const response = await fetch('/api/create-preference', { method: 'POST' });
+    const data = await response.json();
+    if (!response.ok || !data.checkout_url) throw new Error(data.error || 'Falha ao abrir checkout.');
+    window.location.href = data.checkout_url;
+  } catch (e) {
+    erro.textContent = e.message || 'Não foi possível abrir o pagamento. Tente novamente.';
+    erro.style.display = 'block';
+    botao.removeAttribute('aria-disabled');
+    botao.textContent = 'Pagar com Pix ou cartão';
+  }
+});
+</script>
 </body>
 </html>

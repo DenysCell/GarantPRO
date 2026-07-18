@@ -2,41 +2,84 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Compra Aprovada | GarantPro</title>
+<title>Confirmando Pagamento | GarantPro</title>
 <style>
 *{box-sizing:border-box}body{margin:0;min-height:100vh;font-family:Arial;background:radial-gradient(circle at top,#2c0505,#090909 42%,#040404);color:#fff}
 header{height:72px;padding:0 5%;display:flex;align-items:center;justify-content:space-between;background:#080808;border-bottom:1px solid #291111}
 .logo{font-size:27px;font-weight:800}.logo span{color:#ef2020}main{padding:55px 18px;display:flex;justify-content:center}
 .card{width:min(760px,100%);background:linear-gradient(160deg,#151515,#090909);border:1px solid #3b1b1b;border-radius:26px;padding:46px;text-align:center;box-shadow:0 30px 90px #000}
-.check{width:92px;height:92px;margin:0 auto 24px;display:grid;place-items:center;border-radius:50%;background:#102817;border:2px solid #26c65a;color:#26c65a;font-size:48px}
+.check{width:92px;height:92px;margin:0 auto 24px;display:grid;place-items:center;border-radius:50%;background:#151515;border:2px solid #777;color:#ddd;font-size:42px}
+.check.approved{background:#102817;border-color:#26c65a;color:#26c65a}.check.pending{background:#2a220d;border-color:#e8b735;color:#e8b735}.check.denied{background:#2b1010;border-color:#ef4444;color:#ef4444}
 h1{font-size:42px;margin:0 0 12px}.subtitle{color:#c3c3c3;font-size:18px;line-height:1.6}
-.notice{text-align:left;background:#111;border:1px solid #292929;border-radius:16px;padding:20px;margin:24px 0}
-.notice ol{margin:0;padding-left:20px;color:#bbb;line-height:1.8}.actions{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:28px}
-.btn{display:flex;align-items:center;justify-content:center;min-height:56px;padding:14px 20px;border-radius:14px;color:#fff;text-decoration:none;font-weight:800}
-.download{background:linear-gradient(135deg,#ef2222,#a00000)}.whatsapp{background:#20bf5b}.help{margin-top:22px;color:#8f8f8f;font-size:13px;line-height:1.6}
-.help a,.back{color:#ddd}.back{display:inline-block;margin-top:22px;text-decoration:none}footer{text-align:center;color:#737373;padding:24px;font-size:13px}
+.notice{text-align:left;background:#111;border:1px solid #292929;border-radius:16px;padding:20px;margin:24px 0}.notice ol{margin:0;padding-left:20px;color:#bbb;line-height:1.8}
+.actions{display:none;grid-template-columns:1fr 1fr;gap:14px;margin-top:28px}.btn{display:flex;align-items:center;justify-content:center;min-height:56px;padding:14px 20px;border-radius:14px;color:#fff;text-decoration:none;font-weight:800}.download{background:linear-gradient(135deg,#ef2222,#a00000)}.whatsapp{background:#20bf5b}
+.help{margin-top:22px;color:#8f8f8f;font-size:13px;line-height:1.6}.help a,.back{color:#ddd}.back{display:inline-block;margin-top:22px;text-decoration:none}footer{text-align:center;color:#737373;padding:24px;font-size:13px}
 @media(max-width:650px){.card{padding:32px 22px}h1{font-size:34px}.actions{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 <header><div class="logo">Garant<span>Pro</span></div><small>DenysCell Software</small></header>
 <main><section class="card">
-<div class="check">✓</div>
-<h1>Compra aprovada!</h1>
-<p class="subtitle">Obrigado por adquirir o <strong>GarantPro</strong>. Seu sistema já está disponível para download. A licença é vitalícia e não possui mensalidade.</p>
-<div class="notice"><h2>Como instalar</h2><ol>
-<li>Clique em <strong>Baixar GarantPro</strong>.</li>
-<li>Abra o arquivo ZIP baixado.</li>
-<li>Extraia a pasta para o computador.</li>
-<li>Execute o GarantPro e siga as instruções de ativação.</li>
-<li>Em caso de dúvida, fale com o suporte pelo WhatsApp.</li>
+<div class="check" id="icone">…</div>
+<h1 id="titulo">Confirmando pagamento</h1>
+<p class="subtitle" id="mensagem">Aguarde alguns segundos enquanto consultamos o Mercado Pago.</p>
+<div class="notice" id="instrucoes" style="display:none"><h2>Como instalar</h2><ol>
+<li>Clique em <strong>Baixar GarantPro</strong>.</li><li>Abra o arquivo ZIP baixado.</li><li>Extraia a pasta para o computador.</li><li>Execute o GarantPro e siga as instruções de ativação.</li><li>Em caso de dúvida, fale com o suporte pelo WhatsApp.</li>
 </ol></div>
-<div class="actions">
-<a class="btn download" href="https://drive.google.com/uc?export=download&id=1g2qg1rSYeqGBMbNkX44eptgdbRXxPo1f" target="_blank" rel="noopener">⬇ Baixar GarantPro</a>
+<div class="actions" id="acoes">
+<a class="btn download" id="baixarGarantPro" href="#" aria-disabled="true">⬇ Baixar GarantPro</a>
 <a class="btn whatsapp" href="https://wa.me/5555991126008?text=Ol%C3%A1%21%20Acabei%20de%20comprar%20o%20GarantPro%20e%20preciso%20de%20suporte." target="_blank" rel="noopener">💬 Suporte no WhatsApp</a>
 </div>
-<p class="help">Se o download não iniciar, <a href="https://drive.google.com/file/d/1g2qg1rSYeqGBMbNkX44eptgdbRXxPo1f/view?usp=drive_link" target="_blank" rel="noopener">abra o arquivo no Google Drive</a>.</p>
+<p class="help" id="ajuda">Não feche esta página durante a confirmação.</p>
 <a class="back" href="index.html">← Voltar para o site</a>
 </section></main>
 <footer>GarantPro • Licença vitalícia • WhatsApp (55) 99112-6008</footer>
+<script>
+const params = new URLSearchParams(location.search);
+const paymentId = params.get('payment_id') || params.get('collection_id');
+const statusParam = params.get('status') || params.get('collection_status');
+const icone = document.getElementById('icone');
+const titulo = document.getElementById('titulo');
+const mensagem = document.getElementById('mensagem');
+const instrucoes = document.getElementById('instrucoes');
+const acoes = document.getElementById('acoes');
+const ajuda = document.getElementById('ajuda');
+const baixar = document.getElementById('baixarGarantPro');
+
+function mostrarPendente() {
+  icone.textContent = '⌛'; icone.className = 'check pending';
+  titulo.textContent = 'Pagamento pendente';
+  mensagem.textContent = 'O Mercado Pago ainda está processando o pagamento. Assim que for aprovado, abra novamente o comprovante ou fale com o suporte.';
+  ajuda.innerHTML = '<a href="checkout.html">Tentar novamente</a> ou fale conosco pelo WhatsApp.';
+}
+function mostrarNegado(texto) {
+  icone.textContent = '×'; icone.className = 'check denied';
+  titulo.textContent = 'Pagamento não confirmado';
+  mensagem.textContent = texto || 'Não foi possível confirmar este pagamento.';
+  ajuda.innerHTML = '<a href="checkout.html">Voltar ao pagamento</a>.';
+}
+function mostrarAprovado(downloadUrl) {
+  icone.textContent = '✓'; icone.className = 'check approved';
+  titulo.textContent = 'Compra aprovada!';
+  mensagem.innerHTML = 'Obrigado por adquirir o <strong>GarantPro</strong>. Seu sistema já está disponível para download. A licença é vitalícia e não possui mensalidade.';
+  baixar.href = downloadUrl;
+  baixar.removeAttribute('aria-disabled');
+  instrucoes.style.display = 'block'; acoes.style.display = 'grid';
+  ajuda.textContent = 'O download é liberado somente depois da confirmação do pagamento pelo Mercado Pago.';
+}
+
+(async () => {
+  if (statusParam === 'pending' && !paymentId) return mostrarPendente();
+  if (!paymentId) return mostrarNegado('Pagamento não identificado. Acesse esta página pelo retorno do Mercado Pago.');
+  try {
+    const response = await fetch(`/api/verify-payment?payment_id=${encodeURIComponent(paymentId)}`);
+    const data = await response.json();
+    if (data.approved && data.download_url) return mostrarAprovado(data.download_url);
+    if (data.status === 'pending' || data.status === 'in_process') return mostrarPendente();
+    return mostrarNegado('O pagamento não está aprovado no Mercado Pago.');
+  } catch (_) {
+    return mostrarNegado('Não foi possível consultar o pagamento agora. Tente novamente em alguns instantes.');
+  }
+})();
+</script>
 </body></html>

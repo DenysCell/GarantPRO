@@ -1,0 +1,22 @@
+GARANTPRO + CHECKOUT PRO — CLOUDFLARE PAGES
+
+1) Substitua os arquivos do repositório GitHub DenysCell/GarantPRO pelos arquivos desta pasta.
+2) O Cloudflare Pages publicará automaticamente após o commit.
+3) Em Workers & Pages > garantpro > Settings > Variables and Secrets, configure:
+
+MP_ACCESS_TOKEN = Access Token de produção do Mercado Pago
+SITE_URL = https://garantpro.website
+DOWNLOAD_TOKEN_SECRET = crie uma senha longa e aleatória (mínimo 32 caracteres)
+GARANTPRO_DOWNLOAD_URL = link real do arquivo GarantPro no Google Drive
+
+A MP_PUBLIC_KEY não é necessária para esta integração do Checkout Pro.
+
+4) No projeto Pages, adicione o domínio personalizado garantpro.website.
+5) Teste primeiro usando o endereço pages.dev. Depois teste no domínio oficial.
+
+IMPORTANTE:
+- Nunca coloque o Access Token dentro do GitHub.
+- O retorno do Mercado Pago já está configurado no código:
+  sucesso: https://garantpro.website/sucesso.html
+  pendente: https://garantpro.website/sucesso.html?status=pending
+  falha: https://garantpro.website/checkout.html?status=failure
